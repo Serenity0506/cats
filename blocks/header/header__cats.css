@@ -1,0 +1,11 @@
+.header__cats {
+    color: rgb(49, 2, 47);
+    font-weight: 900;
+    font-size: 70px;
+    margin: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .header__cats {
+        font-size: 50px;
+    }

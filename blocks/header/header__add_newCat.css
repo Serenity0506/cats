@@ -1,0 +1,17 @@
+.header__button_add_newCat {
+    font-size: 18px;
+    padding: 20px 25px;
+    border-radius: 20px;
+    background-color: rgb(122, 34, 130);
+    border: 0;
+    color: white;
+    width: 300px;
+}
+
+@media screen and (max-width: 320px) {
+    .header__button_add_newCat{
+        margin-top: 16px;
+        width: 200px;
+
+    }
+}
