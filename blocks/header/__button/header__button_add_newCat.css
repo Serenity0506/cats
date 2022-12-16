@@ -6,12 +6,18 @@
     border: 0;
     color: white;
     width: 300px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
-    .header__button_add_newCat{
+    .header__button_add_newCat {
         margin-top: 16px;
         width: 200px;
 
     }
+}
+
+
+.header__button_add_newCat:hover {
+    background-color: rgb(124, 2, 255);
 }

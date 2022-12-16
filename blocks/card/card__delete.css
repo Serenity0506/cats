@@ -1,0 +1,12 @@
+.card__delete {
+    width: 35px;
+    z-index: 100;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+
+.card__delete:hover {
+    opacity: 50%;
+}

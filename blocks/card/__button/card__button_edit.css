@@ -1,0 +1,21 @@
+.card__button_edit {
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(149, 31, 43);
+    border: 0;
+    color: white;
+    width: 47%;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 320px) {
+    .card__button_edit {
+        font-size: 10px;
+    }
+}
+
+
+.card__button_edit:hover {
+    background-color: rgb(248, 0, 17);
+}
