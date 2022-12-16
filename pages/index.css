@@ -4,12 +4,22 @@
 @import url(../blocks/body/body.css);
 
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/header__logo.css);
-@import url(../blocks/header/header__cats.css);
-@import url(../blocks/header/header__add_newCat.css);
-@import url(../blocks/header/header__authorization.css);
+@import url(../blocks/header/__button/header__button_add_newCat.css);
+@import url(../blocks/header/__button/header__button_authorization.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__title/header__title.css);
 
-@import url(../blocks/page/page.css);
+@import url(../blocks/card/cards.css);
+@import url(../blocks/card/__button/card__button_delete.css);
+@import url(../blocks/card/__button/card__detail.css);
+@import url(../blocks/card/__card/card__card_bottom.css);
+@import url(../blocks/card/__card/card__card_img.css);
+@import url(../blocks/card/__card/card__card_text.css);
+@import url(../blocks/card/__card/card__card_title.css);
+@import url(../blocks/card/__box/card__box.css);
+@import url(../blocks/card/__button/card__button.css);
+
 
 @import url(../blocks/footer/footer.css);
-@import url(../blocks/footer/footer__text.css);
+@import url(../blocks/footer/__text/footer__text.css);
+

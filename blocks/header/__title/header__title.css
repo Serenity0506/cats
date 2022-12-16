@@ -1,4 +1,4 @@
-.header__cats {
+.header__title {
     color: rgb(49, 2, 47);
     font-weight: 900;
     font-size: 70px;
@@ -6,6 +6,7 @@
 }
 
 @media screen and (max-width: 320px) {
-    .header__cats {
-        font-size: 50px;
+    .header__title {
+        font-size: 40px;
     }
+}

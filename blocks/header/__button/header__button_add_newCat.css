@@ -8,7 +8,7 @@
     width: 300px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
     .header__button_add_newCat{
         margin-top: 16px;
         width: 200px;
