@@ -2,7 +2,7 @@
     font-size: 18px;
     padding: 5px;
     border-radius: 10px;
-    background-color: rgb(149, 31, 43);
+    background-color: rgb(134, 35, 143);
     border: 0;
     color: white;
     width: 47%;
@@ -11,11 +11,11 @@
 
 @media screen and (max-width: 320px) {
     .card__button_edit {
-        font-size: 10px;
+        font-size: 16px;
     }
 }
 
 
 .card__button_edit:hover {
-    background-color: rgb(248, 0, 17);
+    background-color: rgb(131, 0, 192);
 }
