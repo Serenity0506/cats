@@ -13,7 +13,7 @@
     <header class="header">
         <h1 class="header__title">КОТЫ</h1>
         <img class="header__logo" src="./images/cat_line_art_Gerald_G_Cartoon_Cat_Face.svg" alt="meaw">
-        <button class="header__button_add_newCat">Добавить кота</button>
+        <button data-openPopup="createCat" class="header__button_add_newCat">Добавить кота</button>
         <!-- <button class="header__authorization">Войти</button> -->
     </header>
 
@@ -26,9 +26,9 @@
         <p class="footer__text">СберУниверситет 2022</p>
     </footer>
 
-    <div class="popup">
-        <form class="popup__form" name="popup">
-            <img data-action="delete" class="card__delete" src="./images/trash-icon.png" alt="Удалить">
+    <div data-popupWr class="popup popup__invisible">
+        <form data-popupContent class="popup__form" name="popup">
+            <img data-action="delete" class="card__delete" src="./images/cross_icon-icons.com_72347.svg" alt="Удалить">
             <p class="popup__header">Информация</p>
 
             <label for="catId">Порядковый номер в базе

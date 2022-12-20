@@ -1,5 +1,9 @@
 const $wr = document.querySelector('[data-wr]');
-const $popup = document.forms.popup; //обращаемся к попапу
+const $popup = document.forms.popup; //обращаемся к форме открытой
+const $popupWr = document.querySelector('[data-popupWr]'); //обращаемся к попапу
+const $popupContent = document.querySelector('[data-popupContent]');
+
+console.log($popupWr, $popupContent)
 
 const ACTIONS = {
     DETAIL: 'detail',
@@ -52,12 +56,13 @@ $wr.addEventListener('click', (e) => { //удаление путем делег�
                     return $catWr.remove() //если тру, то ретерн зааершит ф-цию
                 }
 
-                alert(`Удаление кота с id = ${cat.id} не удалось`) //или выведет алерт
+                alert(`Удаление кота с id = ${catId.id} не удалось`) //или выведет алерт
             })
     }
 })
 
-$popup.addEventListener('submit', (e) => {
+
+const submitPopupHandler = (e) => {
     e.preventDefault()
 
     let popupDataObject = Object.fromEntries(new FormData(e.target).entries());
@@ -87,5 +92,36 @@ $popup.addEventListener('submit', (e) => {
             }
             throw Error('Ошибка при создании кота') //показывается, если были ответы не 200, но тоже валидные
         }).catch(alert) //показывается, если фетч сломался
-})
+}
 //нужно сделать валидацию данных (1:12 тайминг)
+
+const clickPopupWrHandler = (e) => {
+    if (e.target === $popupWr) {
+        $popupWr.classList.add('popup__invisible')
+        $popupWr.removeEventListener('click', clickPopupWrHandler)
+        $popup.removeEventListener('submit', submitPopupHandler) //удалили обработчик событий    }
+    }
+}
+
+const openModalHendler = (e) => { //добавляем обработчик события по клику на документ, чтобы открывать модалки
+    const targetPopupName = e.target.dataset.openpopup;
+
+    if (targetPopupName === 'createCat') {
+        $popupWr.classList.remove('popup__invisible')
+        $popupWr.addEventListener('click', clickPopupWrHandler)
+        $popup.addEventListener('submit', submitPopupHandler) //добавили обработчик событий
+    }
+} //ф-ция открытия модалки
+
+document.addEventListener('click', openModalHendler) //по клику попап открыт
+
+document.addEventListener('keydown', (e) => {
+    console.log(e)
+
+    if (e.key === "Escape") {
+        $popupWr.classList.add('popup__invisible')
+        $popupWr.removeEventListener('click', clickPopupWrHandler)
+        $popup.removeEventListener('submit', submitPopupHandler) //удалили обработчик событий
+    }
+}
+);
