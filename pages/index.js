@@ -3,8 +3,6 @@ const $popup = document.forms.popup; //обращаемся к форме отк
 const $popupWr = document.querySelector('[data-popupWr]'); //обращаемся к попапу
 const $popupContent = document.querySelector('[data-popupContent]');
 
-console.log($popupWr, $popupContent)
-
 const ACTIONS = {
     DETAIL: 'detail',
     DELETE: 'delete',
@@ -34,9 +32,6 @@ fetch('https://cats.petiteweb.dev/api/single/Serenity0506/show/') // отобр�
     .then((res) => res.json()) //получаем от сервера тело ответа (промис тоже) через обр.к json
     .then((data) => {
         $wr.insertAdjacentHTML('afterbegin', data.map(cat => getCatHTML(cat)).join('')) //обращаемся к контейнеру &wr, ставим в начало, обращаемся к data(тк массив), методом map делаем из массива объектов - массив строк и записываем в пустую строку методом .join
-
-
-        console.log({ data })
     })
 
 $wr.addEventListener('click', (e) => { //удаление путем делегирования 
@@ -103,7 +98,7 @@ const clickPopupWrHandler = (e) => {
     }
 }
 
-const openModalHendler = (e) => { //добавляем обработчик события по клику на документ, чтобы открывать модалки
+const openPopupHendler = (e) => { //добавляем обработчик события по клику на документ, чтобы открывать модалки
     const targetPopupName = e.target.dataset.openpopup;
 
     if (targetPopupName === 'createCat') {
@@ -113,7 +108,7 @@ const openModalHendler = (e) => { //добавляем обработчик со
     }
 } //ф-ция открытия модалки
 
-document.addEventListener('click', openModalHendler) //по клику попап открыт
+document.addEventListener('click', openPopupHendler) //по клику попап открыт
 
 document.addEventListener('keydown', (e) => {
     console.log(e)
@@ -125,3 +120,11 @@ document.addEventListener('keydown', (e) => {
     }
 }
 );
+
+function handlePopupCloseButton(e) {
+    const closeButton = $popup.querySelector('.card__delete');
+    if (e.target === closeButton) {
+        $popupWr.classList.add('popup__invisible')
+    }
+}
+$popupWr.addEventListener('click', handlePopupCloseButton);

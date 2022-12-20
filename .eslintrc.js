@@ -4,6 +4,7 @@ module.exports = {
         "document": true,
         "fetch": true,
         "alert": true,
+        "console": true,
         "FormData": true
     },
     "env": {
