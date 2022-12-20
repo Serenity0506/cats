@@ -1,4 +1,11 @@
 module.exports = {
+    "globals": {
+        "window": true,
+        "document": true,
+        "fetch": true,
+        "alert": true,
+        "FormData": true
+    },
     "env": {
         "es2021": true
     },

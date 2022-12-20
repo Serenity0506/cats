@@ -22,5 +22,14 @@
 @import url(../blocks/card/__img/_container/card__img_container.css);
 
 
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__chekbox/popup__chekbox.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__submit/popup__submit.css);
+@import url(../blocks/popup/__header/popup__header.css);
+@import url(../blocks/popup/__invisible/popup__invisible.css);
+
+
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

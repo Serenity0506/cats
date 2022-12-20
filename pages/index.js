@@ -1,4 +1,5 @@
 const $wr = document.querySelector('[data-wr]');
+const $popup = document.forms.popup; //обращаемся к попапу
 
 const ACTIONS = {
     DETAIL: 'detail',
@@ -6,7 +7,7 @@ const ACTIONS = {
     EDIT: 'edit'
 }
 
-const getCatHTML = (cat) => {
+const getCatHTML = (cat) => { //код добавления карточки кота
     return `
     <div data-cat-id=${cat.id} class="card">
     <div class="card__img_container">
@@ -25,33 +26,66 @@ const getCatHTML = (cat) => {
     `
 }
 
-fetch('https://cats.petiteweb.dev/api/single/Serenity0506/show/')
+fetch('https://cats.petiteweb.dev/api/single/Serenity0506/show/') // отображение всех котов из базы
     .then((res) => res.json()) //получаем от сервера тело ответа (промис тоже) через обр.к json
     .then((data) => {
         $wr.insertAdjacentHTML('afterbegin', data.map(cat => getCatHTML(cat)).join('')) //обращаемся к контейнеру &wr, ставим в начало, обращаемся к data(тк массив), методом map делаем из массива объектов - массив строк и записываем в пустую строку методом .join
-        
-        
-        console.log({data})
+
+
+        console.log({ data })
     })
 
-    $wr.addEventListener('click', (e) => {
-        if (e.target.dataset.action === ACTIONS.DELETE){
-            console.log(e.target)
+$wr.addEventListener('click', (e) => { //удаление путем делегирования 
+    if (e.target.dataset.action === ACTIONS.DELETE) {
+        console.log(e.target)
 
-            const $catWr = e.target.closest('[data-cat-id]') //обращаемся к кнопке, а потом к ее родителю
-            const catId = $catWr.dataset.catId //записали айди кота в переменную
+        const $catWr = e.target.closest('[data-cat-id]') //обращаемся к кнопке, а потом к ее родителю
+        const catId = $catWr.dataset.catId //записали айди кота в переменную
 
-            console.log({ catId })
+        console.log({ catId })
 
-            fetch(`https://cats.petiteweb.dev/api/single/Serenity0506/delete/${catId}`, { //делаем запрос на сервер на удаление
-                method: 'DELETE',
-            })
+        fetch(`https://cats.petiteweb.dev/api/single/Serenity0506/delete/${catId}`, { //делаем запрос на сервер на удаление
+            method: 'DELETE',
+        })
             .then(res => {
-                if(res.status === 200) {
+                if (res.status === 200) {
                     return $catWr.remove() //если тру, то ретерн зааершит ф-цию
                 }
 
                 alert(`Удаление кота с id = ${cat.id} не удалось`) //или выведет алерт
             })
-        }
+    }
+})
+
+$popup.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    let popupDataObject = Object.fromEntries(new FormData(e.target).entries());
+
+    popupDataObject = { //будем преобразовывать полученные строки в инпутах в числа
+        ...popupDataObject,
+        id: +popupDataObject.id, //строка в намбер
+        rate: +popupDataObject.rate,
+        age: +popupDataObject.age,
+        favorite: !!popupDataObject.favorite, //строка в булеан
+    }
+
+    //запрос на сервер на отправку данных на создание кота
+    fetch('https://cats.petiteweb.dev/api/single/Serenity0506/add/', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json' //этим загловком мы сообщаем серверу, что отсылаем данные в формате json
+        },
+        body: JSON.stringify(popupDataObject) //тело запроса - превращаем объект в строку, чтобы ее передать по http в формате json
     })
+        .then((res) => {
+            if (res.status === 200) {
+                return $wr.insertAdjacentHTML(
+                    'afterbegin',
+                    getCatHTML(popupDataObject)
+                ) //обращаемся к контейнеру &wr, ставим в начало, добавляем кота 
+            }
+            throw Error('Ошибка при создании кота') //показывается, если были ответы не 200, но тоже валидные
+        }).catch(alert) //показывается, если фетч сломался
+})
+//нужно сделать валидацию данных (1:12 тайминг)
