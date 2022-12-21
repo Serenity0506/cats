@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="./pages/index.css">
-    <script defer src="./pages/index.js"></script>
+    <script defer src="./pages/index.js" type="module"></script>
     <title>cats</title>
 </head>
 
@@ -14,11 +14,10 @@
         <h1 class="header__title">КОТЫ</h1>
         <img class="header__logo" src="./images/cat_line_art_Gerald_G_Cartoon_Cat_Face.svg" alt="meaw">
         <button data-openPopup="createCat" class="header__button_add_newCat">Добавить кота</button>
-        <!-- <button class="header__authorization">Войти</button> -->
     </header>
 
     <div data-wr class="cards">
-        <!--Здесь будет вставка карточки, посредством темплейта через код js-->
+        <!--Здесь будет вставка карточки, через код js-->
     </div>
 
     <footer class="footer">
@@ -27,6 +26,31 @@
     </footer>
 
     <div data-popupWr class="popup popup__invisible">
+        <!--Здесь будет вставка попап, через код js-->
+    </div>
+
+    <!-- <div data-cardOpenWr class="popup">
+        <div data-popupContent class="popup__form" name="popup">
+            <img class="card__delete" src="./images/cross_icon-icons.com_72347.svg" alt="Удалить">
+            <img class="card__img"
+                src="https://w7.pngwing.com/pngs/949/446/png-transparent-cheshire-cat-alice-in-wonderland-drawing-apsaras-purple-animals-violet-thumbnail.png"
+                alt=${cat.name}>
+            <div class="card__container">
+                <p class="popup__header">Имя кота</p>
+                <p></p>
+                <p class="popup__stroke">Порядковый номер в базе</p>
+                <p class="popup__stroke">Возраст</p>
+                <p class="popup__stroke">Рейтинг</p>
+                <p class="popup__stroke">Описание</p>
+                <div class="card__container_footer">
+                    <button data-action=${ACTIONS.EDIT} type="button" class="card__button_edit">Изменить</button>
+                    <button type="button" class="card__like"></button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <template id="popup-content-template">
         <form data-popupContent class="popup__form" name="popup">
             <img class="card__delete" src="./images/cross_icon-icons.com_72347.svg" alt="Удалить">
             <p class="popup__header">Информация</p>
@@ -39,7 +63,7 @@
                 <input id="catNumber" required type="text" name="name" placeholder="name" class="popup__input">
             </label>
 
-            <label for=" catLink">URL
+            <label for="catLink">URL
                 <input id="catLink" type="url" name="image" placeholder="image" class="popup__input">
             </label>
 
@@ -48,7 +72,7 @@
             </label>
 
             <label for="catRate">Рейтинг
-                <input id="catRate" type="number" name="rate" placeholder="rate" class="popup__input">
+                <input id="catRate" type="number" name="rate" placeholder="rate" class="popup__input" min="1" max="5">
             </label>
 
             <label for="catDescription">Описание
@@ -56,19 +80,13 @@
                     class="popup__input"></textarea>
             </label>
 
-
             <label for="catFavorite">Самый любимый кот <input id="favorite" type="Checkbox" name="favorite"
                     placeholder="favorite" class="popup__chekbox">
             </label>
 
             <button type="submit" class="popup__submit" value="Создать кота">Сохранить</button>
         </form>
-    </div>
-
-
+    </template>
 </body>
-
-
-
 
 </html>
