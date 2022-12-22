@@ -1,5 +1,5 @@
 .body {
-    background-color: #e9daf7;
+    background: linear-gradient(#e9daf7, #b630b1);
     margin: 10px 100px 10px 100px;
     font-family: 'Inter', sans-serif;
 }

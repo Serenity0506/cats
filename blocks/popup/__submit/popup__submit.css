@@ -1,0 +1,16 @@
+.popup__submit {
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(74, 6, 200);
+    border: 0;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+
+.popup__submit:hover {
+    background-color: rgb(131, 0, 192);
+}

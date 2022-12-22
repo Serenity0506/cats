@@ -1,0 +1,15 @@
+.card__like {
+    background-color: inherit;
+    border: none;
+    padding: 0;
+    background-image: url(../../images/24037-e91e63.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 22px;
+    height: 19px;
+    cursor: pointer;
+}
+
+.card__like {
+    opacity: 50%;
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="./pages/index.css">
-    <script defer src="./pages/index.js"></script>
+    <script defer src="./pages/index.js" type="module"></script>
     <title>cats</title>
 </head>
 
@@ -13,37 +13,59 @@
     <header class="header">
         <h1 class="header__title">КОТЫ</h1>
         <img class="header__logo" src="./images/cat_line_art_Gerald_G_Cartoon_Cat_Face.svg" alt="meaw">
-        <button class="header__button_add_newCat">Добавить кота</button>
-        <!-- <button class="header__authorization">Войти</button> -->
+        <button data-openPopup="createCat" class="header__button_add_newCat">Добавить кота</button>
     </header>
 
     <div data-wr class="cards">
+        <!--Здесь будет вставка карточки, через код js-->
     </div>
 
-
-    <!-- <div class="cards">
-        <div data-wr="" class="card">
-            <img class="card__delete" src="./images/trash-icon.png" alt="Удалить">
-            <img class="card__img" src="https://souzmult.ru/api/images/character-5d75f2a8df459.svg"
-                alt="Котенок по имени Гав">
-            <div class="card__footer">
-                <h4 class="card__title">Гав</h4>
-                <p class="card__text">Любит сосики и друзей</p>
-                <div class="card__button">
-                    <button data-action="detail" type="button" class="card__button_detail">Детали</button>
-                    <button data-action="delete" type="button" class="card__button_edit">Изменить</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <footer class="footer">
-        <p class="footer__text">Любовь Гайдук</p>
+        <p class="footer__text">Любовь Гайдук / Serenity</p>
         <p class="footer__text">СберУниверситет 2022</p>
     </footer>
+
+    <div data-popupWr class="popup popup__invisible">
+        <!--Здесь будет вставка попап, через код js-->
+    </div>
+
+    <template id="popup-content-template">
+        <form data-popupContent class="popup__form" name="popup">
+            <img class="card__delete" src="./images/cross_icon-icons.com_72347.svg" alt="Удалить">
+            <p class="popup__header">Информация</p>
+
+            <label for="catId">Порядковый номер в базе
+                <input id="catId" required type="text" name="id" placeholder="id" class="popup__input">
+            </label>
+
+            <label for="catNumber">Имя кота
+                <input id="catNumber" required type="text" name="name" placeholder="name" class="popup__input">
+            </label>
+
+            <label for="catLink">URL
+                <input id="catLink" type="url" name="image" placeholder="image" class="popup__input">
+            </label>
+
+            <label for="catAge">Возраст
+                <input id="catAge" type="number" name="age" placeholder="age" class="popup__input">
+            </label>
+
+            <label for="catRate">Рейтинг
+                <input id="catRate" type="number" name="rate" placeholder="rate" class="popup__input" min="1" max="5">
+            </label>
+
+            <label for="catDescription">Описание
+                <textarea id="catDescription" name="description" placeholder="description" cols="30" rows="3"
+                    class="popup__input"></textarea>
+            </label>
+
+            <label for="catFavorite">Самый любимый кот <input id="favorite" type="Checkbox" name="favorite"
+                    placeholder="favorite" class="popup__chekbox">
+            </label>
+
+            <button type="submit" class="popup__submit" value="Создать кота">Сохранить</button>
+        </form>
+    </template>
 </body>
-
-
-
 
 </html>

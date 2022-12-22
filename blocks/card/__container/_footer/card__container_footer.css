@@ -1,0 +1,5 @@
+.card__container_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
