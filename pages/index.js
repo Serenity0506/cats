@@ -146,7 +146,7 @@ const updateCatCard = (e) => {
         if (el.type == 'checkbox') {
             catData[el.name] = el.checked;
         }
-        else {
+        else if (el.type !== 'submit') {
             catData[el.name] = el.value;
         }
     }
