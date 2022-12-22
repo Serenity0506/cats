@@ -93,5 +93,4 @@ class CatsService {
     }
 }
 
-
 export { CatsService }
