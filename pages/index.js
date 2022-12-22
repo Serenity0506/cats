@@ -27,7 +27,7 @@ const getCatHTML = (cat) => {
     <div data-cat-id=${cat.id} class="card">
     <div class="card__img_container">
         <img data-action=${ACTIONS.DELETE} class="card__delete" src="./images/trash-icon.png" alt="Удалить">
-        <img class="card__img" src="${cat.image}" onerror="this.src='./images/fallback-img.jpg'"
+        <img class="card__img" src="${cat.image}" onerror="this.onerror=null;this.src='./images/fallback-img.jpg';"
             alt="${cat.name}"></div>
         <div class="card__footer">
             <h4 class="card__title">${cat.favorite ? '😻' : '🙀'} ${cat.name}</h4>
@@ -105,16 +105,25 @@ function deleteCatCard(catId, cardElement) {
         });
 }
 
+//открываем карточку кота
 function openCatCard(catId) {
     $popupWr.innerHTML = ''
     $popupWr.addEventListener('click', closePopupOnBackgroundClick)
     $popupWr.prepend(getCreateCatHTMLElement())
 
+    const popupFormElements = document.forms.popup.elements;
     const cat = catsService.getCatFromStorage(catId)
 
     for (let inputName in cat) {
-        let inputElement = document.forms.popup.elements.namedItem(inputName);
-        inputElement.value = cat[inputName];
+        let inputElement = popupFormElements.namedItem(inputName);
+
+        if (inputElement.type === 'checkbox') {
+            inputElement.checked = cat[inputName];
+        }
+        else {
+            inputElement.value = cat[inputName];
+        }
+
 
         if (inputElement.name == 'id' || inputElement.name == 'name') {
             inputElement.disabled = 'disabled'
@@ -127,14 +136,18 @@ function openCatCard(catId) {
 
 }
 
+//изменяем карточку кота
 const updateCatCard = (e) => {
     e.preventDefault()
 
     let catData = {}
 
     for (let el of document.forms.popup.elements) {
-        if (el.tagName == 'INPUT' || el.tagName == 'TEXTAREA') {
-            catData[el.name] = el.value
+        if (el.type == 'checkbox') {
+            catData[el.name] = el.checked;
+        }
+        else {
+            catData[el.name] = el.value;
         }
     }
 
@@ -189,7 +202,7 @@ document.addEventListener('keydown', (e) => {
 }
 );
 
-//открытие попап
+//открытие попап создания
 const openPopupHendler = (e) => { //добавляем обработчик события по клику на документ, чтобы открывать модалки
     const targetPopupName = e.target.dataset.openpopup;
 
@@ -201,6 +214,6 @@ const openPopupHendler = (e) => { //добавляем обработчик со
         const $popup = document.forms.popup; //обращаемся к форме открытой
         $popup.addEventListener('submit', createCatCard) //добавили обработчик событий
     }
-} //ф-ция открытия модалки
+}
 
 document.addEventListener('click', openPopupHendler) //по клику попап открыт

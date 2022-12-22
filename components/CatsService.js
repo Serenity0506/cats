@@ -32,7 +32,16 @@ class CatsService {
             },
             body: JSON.stringify(cat),
         })
+
         const isOk = resp.status === 200;
+
+        if (isOk) {
+            this.ls.setItem(
+                `cat-${cat.id}`,
+                JSON.stringify(cat)
+            )
+        }
+
         return isOk;
     }
 
@@ -43,6 +52,11 @@ class CatsService {
         );
 
         const isOk = resp.status === 200;
+
+        if (isOk) {
+            this.ls.removeItem(`cat-${catId}`)
+        }
+
         return isOk;
     }
 
@@ -67,6 +81,14 @@ class CatsService {
         );
 
         const isOk = resp.status === 200;
+
+        if (isOk) {
+            this.ls.setItem(
+                `cat-${catId}`,
+                JSON.stringify(catData)
+            )
+        }
+
         return isOk;
     }
 }
